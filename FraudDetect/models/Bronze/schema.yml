@@ -1,0 +1,56 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: transaction_raw
+    tables:
+      - name: raw_transaction
+    
+
+
+models:
+  - name: transaction_b
+    columns:
+      - name: transaction_id
+        tests: [not_null, unique]
+
+      - name: user_id
+        tests: [not_null]
+
+      - name: merchant_id
+        tests: [not_null]
+
+      - name: device_id
+        tests: [not_null]
+
+      - name: transaction_amount
+        tests:
+          - not_null
+        
+
+      - name: transaction_date
+        tests:
+          - not_null
+
+
+      - name: payment_method
+        tests:
+          - accepted_values:
+              values: ['CREDIT_CARD', 'DEBIT_CARD', 'BANK_TRANSFER', 'DIGITAL_WALLET', 'UPI']
+
+      - name: device_type
+        tests:
+          - accepted_values:
+              values: ['MOBILE', 'DESKTOP', 'TABLET']
+
+      - name: ip_country
+        tests: [not_null]
+
+      - name: billing_country
+        tests: [not_null]
+
+      - name: is_fraud_label
+        tests:
+          - accepted_values:
+              values: [TRUE, FALSE]
+      
