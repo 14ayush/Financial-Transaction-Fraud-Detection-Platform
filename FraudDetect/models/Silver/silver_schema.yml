@@ -1,0 +1,32 @@
+
+
+models:
+  - name: si_transaction_fact
+    columns:
+      - name: transaction_id
+        tests: [not_null, unique]
+      - name: user_id
+        tests:
+          - not_null
+          - relationships: {to: ref('si_users_dimension'), field: user_id}
+      - name: device_id
+        tests:
+          - not_null
+          - relationships: {to: ref('si_devices_dimension'), field: device_id}
+      - name: transaction_amount
+        tests: [not_null]
+
+  - name: si_users_dim
+    columns:
+      - name: user_id
+        tests: [not_null, unique]
+      - name: first_seen_at
+        tests: [not_null]
+
+  - name: si_device_dim
+    columns:
+      - name: device_id
+        tests: [not_null, unique]
+      - name: device_type
+        tests:
+          - accepted_values: {values: ['MOBILE', 'DESKTOP', 'TABLET']}
