@@ -32,7 +32,7 @@ import os
 # ---------------------------------------------------------------------------
 NUM_USERS = random.randint(3000,8000)
 NUM_MERCHANTS = random.randint(300,500)
-FRAUD_RATE = 0.02  # ~2% of transactions are fraud — realistic order of magnitude
+FRAUD_RATE = random.uniform(0.01,0.05)  # ~2% of transactions are fraud — realistic order of magnitude
 
 PAYMENT_METHODS = ["CREDIT_CARD", "DEBIT_CARD", "BANK_TRANSFER", "DIGITAL_WALLET","UPI"]
 DEVICE_TYPES = ["MOBILE", "DESKTOP", "TABLET"]
