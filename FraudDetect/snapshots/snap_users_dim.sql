@@ -1,4 +1,4 @@
-{% snapshot snap_users_dim%}
+{% snapshot snap_users_dim %}
 {{
   config(
     target_schema="snapshots",
