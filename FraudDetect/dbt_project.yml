@@ -32,7 +32,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   FraudDetect:
     # Config indicated by + and applies to all files under models/example/
-
+snapshots:
+  FraudDetect:
+    +target_schema: snapshots
       
       
 

@@ -1,5 +1,3 @@
-
-
 models:
   - name: si_transaction_fact
     columns:
@@ -8,25 +6,53 @@ models:
       - name: user_id
         tests:
           - not_null
-          - relationships: {to: ref('si_users_dimension'), field: user_id}
+          - relationships: {to: ref('si_users_current'), field: user_id}
       - name: device_id
         tests:
           - not_null
-          - relationships: {to: ref('si_devices_dimension'), field: device_id}
+          - relationships: {to: ref('si_devices_current'), field: device_id}
       - name: transaction_amount
         tests: [not_null]
 
-  - name: si_users_dim
+  - name: si_users_current
     columns:
       - name: user_id
         tests: [not_null, unique]
       - name: first_seen_at
         tests: [not_null]
 
-  - name: si_device_dim
+  - name: si_devices_current
     columns:
       - name: device_id
         tests: [not_null, unique]
       - name: device_type
         tests:
           - accepted_values: {values: ['MOBILE', 'DESKTOP', 'TABLET']}
+
+# --- SCD2-specific tests, on the snapshots themselves ---
+snapshots:
+  - name: snap_users_dimension
+    columns:
+      - name: dbt_scd_id
+        tests: [not_null, unique]        # every version of every row must be uniquely identifiable
+      - name: user_id
+        tests: [not_null]
+      - name: dbt_valid_from
+        tests: [not_null]
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "dbt_valid_to is null or dbt_valid_to > dbt_valid_from"
+          # catches a corrupted version window - a closed row's valid_to
+          # must come after its valid_from, never before or equal
+
+  - name: snap_devices_dimension
+    columns:
+      - name: dbt_scd_id
+        tests: [not_null, unique]
+      - name: device_id
+        tests: [not_null]
+      - name: dbt_valid_from
+        tests: [not_null]
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "dbt_valid_to is null or dbt_valid_to > dbt_valid_from"
