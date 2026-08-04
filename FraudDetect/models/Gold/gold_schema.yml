@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: go_user_behaviour
+    description: >
+      Rolling 30-day behavioral baseline per user — average spend, spend
+      volatility, typical active hours, and transaction volume. This is
+      the "normal" that go_predictive_model_features compares every
+      individual transaction against (e.g. amount_zscore).
+    columns:
+      - name: user_id
+        tests: [not_null, unique]
+
+      - name: avg_amount_30d
+        tests:
+          - not_null
+          - dbt_utils.accepted_range: {min_value: 0}
+
+      - name: stddev_amount_30d
+        tests:
+          - dbt_utils.accepted_range: {min_value: 0}
+          # null is allowed here — a user with exactly one transaction in
+          # the window has no meaningful stddev
+
+      - name: p90_amount_30d
+        tests:
+          - dbt_utils.accepted_range: {min_value: 0}
+
+      - name: earliest_active_hour
+        tests:
+          - dbt_utils.accepted_range: {min_value: 0, max_value: 23}
+
+      - name: latest_active_hour
+        tests:
+          - dbt_utils.accepted_range: {min_value: 0, max_value: 23}
+
+      - name: transaction_count_30d
+        tests:
+          - not_null
+          - dbt_utils.accepted_range: {min_value: 1}
+          # every row here came from at least one real transaction, by
+          # construction — a 0 or null would mean a join bug upstream
+
+      - name: last_updated_at
+        tests: [not_null]
+
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "earliest_active_hour <= latest_active_hour"
+          # sanity check on the two derived hour columns
