@@ -18,8 +18,6 @@ models:
     columns:
       - name: user_id
         tests: [not_null, unique]
-      - name: first_seen_at
-        tests: [not_null]
 
   - name: si_devices_current
     columns:

@@ -180,3 +180,5 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 FraudDetect/profiles.yml
+FraudDetect/package-lock.yml
+FraudDetect/packages.yml

@@ -48,3 +48,45 @@ models:
       - dbt_utils.expression_is_true:
           expression: "earliest_active_hour <= latest_active_hour"
           # sanity check on the two derived hour columns
+  - name: go_merchant_risk
+    description: >
+      Rolling 90-day risk profile per merchant — fraud rate, transaction
+      volume, and customer diversity. Feeds merchant_risk_rate in
+      go_predictive_model_features, and the merchant scatter plot / ranked
+      table on the Power BI Merchant Risk Assessment page.
+    columns:
+      - name: merchant_id
+        tests: [not_null, unique]
+
+      - name: transaction_count_90d
+        tests:
+          - not_null
+          - dbt_utils.accepted_range: {min_value: 1}
+
+      - name: fraud_count_90d
+        tests:
+          - not_null
+          - dbt_utils.accepted_range: {min_value: 0}
+
+      - name: fraud_rate_90d
+        tests:
+          - not_null
+          - dbt_utils.accepted_range: {min_value: 0, max_value: 1}
+
+      - name: avg_transaction_amount_90d
+        tests:
+          - dbt_utils.accepted_range: {min_value: 0}
+
+      - name: distinct_customer_count_90d
+        tests:
+          - not_null
+          - dbt_utils.accepted_range: {min_value: 1}
+
+      - name: last_updated_at
+        tests: [not_null]
+
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "fraud_count_90d <= transaction_count_90d"
+          # fraud count can never exceed total transactions - catches a
+          # join fanout bug if one ever creeps in upstream
