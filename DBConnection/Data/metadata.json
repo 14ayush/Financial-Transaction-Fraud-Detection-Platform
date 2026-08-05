@@ -1,0 +1,39 @@
+{
+  "processed_files": {
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-07-29.csv": {
+      "rows_loaded": null,
+      "loaded_at": "2026-08-05T06:15:00.929798+00:00",
+      "note": "seeded as pre-existing; not actually loaded by this run"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-07-30.csv": {
+      "rows_loaded": null,
+      "loaded_at": "2026-08-05T06:15:00.929798+00:00",
+      "note": "seeded as pre-existing; not actually loaded by this run"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-07-31.csv": {
+      "rows_loaded": null,
+      "loaded_at": "2026-08-05T06:15:00.929798+00:00",
+      "note": "seeded as pre-existing; not actually loaded by this run"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-01.csv": {
+      "rows_loaded": null,
+      "loaded_at": "2026-08-05T06:15:00.929798+00:00",
+      "note": "seeded as pre-existing; not actually loaded by this run"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-02.csv": {
+      "rows_loaded": null,
+      "loaded_at": "2026-08-05T06:15:00.929798+00:00",
+      "note": "seeded as pre-existing; not actually loaded by this run"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-03.csv": {
+      "rows_loaded": null,
+      "loaded_at": "2026-08-05T06:15:00.929798+00:00",
+      "note": "seeded as pre-existing; not actually loaded by this run"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-04.csv": {
+      "rows_loaded": null,
+      "loaded_at": "2026-08-05T06:15:00.929798+00:00",
+      "note": "seeded as pre-existing; not actually loaded by this run"
+    }
+  }
+}

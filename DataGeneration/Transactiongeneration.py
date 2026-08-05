@@ -2,8 +2,9 @@
 """
 Synthetic transaction data generator for the Fraud Detection Pipeline.
 
-Generates one day's worth of transactions per run, written as a CSV into a
-date-partitioned folder (date=YYYY-MM-DD/transactions_YYYY-MM-DD.csv).
+Generates one day's worth of transactions per run, written as a single CSV
+file directly into the output directory (transactions_YYYY-MM-DD.csv) —
+no date=YYYY-MM-DD subfolder is created.
 
 Fraud labels are NOT random — they are injected with correlated feature
 signal (unusual amount, new device, distant location, off-hours, velocity
@@ -199,9 +200,9 @@ def generate_daily_batch(date_obj, num_transactions, users, merchants):
 # ---------------------------------------------------------------------------
 
 def write_csv(transactions, date_obj, output_dir):
-    day_dir = Path(output_dir) / f"date={date_obj.isoformat()}"
-    day_dir.mkdir(parents=True, exist_ok=True)
-    out_path = day_dir / f"transactions_{date_obj.isoformat()}.csv"
+    out_dir = Path(output_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_path = out_dir / f"transactions_{date_obj.isoformat()}.csv"
 
     with open(out_path, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
@@ -225,7 +226,7 @@ def main():
     )
     parser.add_argument(
         "--output-dir", type=str, default="./data",
-        help="Root output directory (a date=YYYY-MM-DD subfolder is created inside it)",
+        help="Output directory — the CSV is written directly inside it, no subfolder",
     )
     parser.add_argument(
         "--seed", type=int, default=None,
