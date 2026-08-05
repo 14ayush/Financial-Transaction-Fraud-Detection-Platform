@@ -34,6 +34,10 @@
       "rows_loaded": null,
       "loaded_at": "2026-08-05T06:15:00.929798+00:00",
       "note": "seeded as pre-existing; not actually loaded by this run"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-05.csv": {
+      "rows_loaded": 18539,
+      "loaded_at": "2026-08-05T06:25:49.702541+00:00"
     }
   }
 }

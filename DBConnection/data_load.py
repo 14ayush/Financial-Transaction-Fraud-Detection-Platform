@@ -1,30 +1,4 @@
-"""
-load_to_neon_postgres.py
 
-Walks through Data/raw_data/<year>/<year_month>/transactions_<year_month>.csv
-and INCREMENTALLY loads only *new* files into a single 'raw_transactions'
-table in Neon Postgres. Already-loaded files are tracked in a local metadata
-JSON file so re-running the script never reprocesses or wipes old data.
-
-Usage:
-    python load_to_neon_postgres.py
-
-Credentials are loaded automatically from a `.env` file. This script will
-search upward from its own location (through parent directories) until it
-finds `.env`, so it works no matter which subdirectory the script itself
-lives in, as long as `.env` sits at or above it (e.g. at the project root).
-
-.env should contain:
-    PG_HOST=ep-xxxx-xxxx.us-east-2.aws.neon.tech
-    PG_PORT=5432
-    PG_DB=neondb
-    PG_USER=neondb_owner
-    PG_PASSWORD=your_password_here
-    PG_TABLE=raw_transactions
-
-Required packages:
-    pip install pandas sqlalchemy psycopg2-binary python-dotenv
-"""
 
 import os
 import json
@@ -36,14 +10,7 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 from dotenv import load_dotenv, find_dotenv
 
-# ---------------------------------------------------------------------------
-# LOAD .env AUTOMATICALLY (searches upward from this file's location)
-# ---------------------------------------------------------------------------
-# find_dotenv() with usecwd=False starts the search at this script's own
-# directory and walks up through parent folders until it finds a `.env`.
-# That means it works whether this script sits directly in the main
-# directory or several levels down in a subdirectory, as long as `.env`
-# lives at or above it.
+
 dotenv_path = find_dotenv(filename=".env", raise_error_if_not_found=False, usecwd=False)
 
 if dotenv_path:

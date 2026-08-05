@@ -90,3 +90,38 @@ models:
           expression: "fraud_count_90d <= transaction_count_90d"
           # fraud count can never exceed total transactions - catches a
           # join fanout bug if one ever creeps in upstream
+  - name: go_predictive_model
+    description: >
+      One row per transaction, with every engineered fraud signal joined
+      together plus the ground-truth label. This is the contract between
+      the pipeline and the ML model — both training and daily scoring
+      read this same table, so feature definitions never diverge between
+      the two (prevents training/serving skew).
+    columns:
+      - name: transaction_id
+        tests: [not_null, unique]
+      - name: user_id
+        tests: [not_null]
+      - name: velocity_1hr
+        tests:
+          - not_null
+          - dbt_utils.accepted_range: {min_value: 0}
+      - name: impossible_travel_flag
+        tests:
+          - accepted_values: {values: [0, 1]}
+      - name: new_device_flag
+        tests:
+          - accepted_values: {values: [0, 1]}
+      - name: off_hours_flag
+        tests:
+          - accepted_values: {values: [0, 1]}
+      - name: location_mismatch_flag
+        tests:
+          - accepted_values: {values: [0, 1]}
+      - name: merchant_risk_rate
+        tests:
+          - dbt_utils.accepted_range: {min_value: 0, max_value: 1}
+      - name: is_fraud_label
+        tests:
+          - not_null
+          - accepted_values: {values: [true, false]}
