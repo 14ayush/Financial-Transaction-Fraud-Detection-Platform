@@ -42,6 +42,10 @@
     "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-06.csv": {
       "rows_loaded": 25299,
       "loaded_at": "2026-08-06T14:26:08.578859+00:00"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-07.csv": {
+      "rows_loaded": 14216,
+      "loaded_at": "2026-08-07T05:19:25.719579+00:00"
     }
   }
 }

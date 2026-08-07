@@ -17,7 +17,7 @@ with new_transaction as(
     select * 
     from {{ ref('si_transaction_fact')}}
     {% if is_incremental() %}
-    where transaction_date > (select coalesce(max(last_updated_at),'1900-01-01') {{ this}})
+    where transaction_date > (select coalesce(max(transaction_date),'1900-01-01') from {{ this}})
     {% endif%}
 ),
 
@@ -111,8 +111,13 @@ feature_calc as (
         greatest(d.velocity_1hr_inclusive - 1, 0) as velocity_1hr,
 
         ---impossible travel flag
+        case
+            when d.distance_from_prev_km is not null
+                 and (d.distance_from_prev_km / nullif(d.hours_since_prev_tx, 0)) > 900
+            then 1 else 0
+        end as impossible_travel_flag,
 
-        
+        -- new device flag 
         case when d.transaction_date = d.device_first_seen_at then 1 else 0 end as new_device_flag,
 
 
