@@ -11,14 +11,13 @@
 -- looking for the latest transactions 
 
 with new_transaction as (
-    select * 
-    from {{ ref('si_transaction_fact')}}
+    select *
+    from {{ ref('si_transaction_fact') }}
 
-    --checking for incremental 
     {% if is_incremental() %}
-    where transaction_date > select(
-    coalesce(max(transaction_date),'1900-01-01') from {{ this}})
-
+    where transaction_date > (
+        select coalesce(max(last_updated_at), '1900-01-01') from {{ this }}
+    )
     {% endif %}
 
 ),
