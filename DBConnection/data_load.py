@@ -29,7 +29,7 @@ PG_PORT = os.environ.get("PG_PORT", "5432")
 PG_DB = os.environ.get("PG_DB", "neondb")
 PG_USER = os.environ.get("PG_USER", "")
 PG_PASSWORD = os.environ.get("PG_PASSWORD", "")
-TABLE_NAME = os.environ.get("PG_TABLE", "raw_transactions")
+TABLE_NAME = os.environ.get("PG_TABLE", "raw_transactions_backup")
 
 data_dir = r"E:\\Financial Transaction Fraud Detection Platform\\DataGeneration"
 
