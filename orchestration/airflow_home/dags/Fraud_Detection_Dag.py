@@ -74,34 +74,54 @@ def _generate_transactions(**context):
 # Task 2: Load today's CSV into the Neon landing table
 # ---------------------------------------------------------------------------
 def _load_to_neon(**context):
-    run_date = context["ds"]
-    csv_path = f"{CSV_OUTPUT_DIR}/transactions_{run_date}.csv"
+    import glob, os, psycopg2
 
     conn_info = BaseHook.get_connection("neon_postgres")
     conn = psycopg2.connect(
-        host=conn_info.host,
-        port=conn_info.port or 5432,
-        dbname=conn_info.schema,
-        user=conn_info.login,
-        password=conn_info.password,
-        sslmode="require",
+        host=conn_info.host, port=conn_info.port or 5432,
+        dbname=conn_info.schema, user=conn_info.login,
+        password=conn_info.password, sslmode="require",
     )
     cur = conn.cursor()
 
-    with open(csv_path, "r") as f:
-        next(f)  # skip header row
-        cur.copy_expert(
-            """
-            COPY raw_transactions_backup (
-                "TransactionID","UserID","MerchantID","DeviceID","TransactionAmount","TransactionDate","PaymentMethod","DeviceType","IP_Address","LocationLat","LocationLon","IP_Country","BillingCountry","IsFraud"
-                ) FROM STDIN WITH CSV
-            """,
-            f,
-        )
-    conn.commit()
-    cur.close()
-    conn.close()
-    print(f"Loaded {csv_path} into raw_transactions_backup")
+    all_csvs = sorted(glob.glob(os.path.join(CSV_OUTPUT_DIR, "*.csv")))
+
+    cur.execute("SELECT file_path FROM pipeline_load_log")
+    already_loaded = {row[0] for row in cur.fetchall()}
+
+    pending = [f for f in all_csvs if os.path.abspath(f) not in already_loaded]
+    if not pending:
+        print("Nothing pending — all files already loaded.")
+        cur.close(); conn.close()
+        return
+
+    for csv_path in pending:
+        abs_path = os.path.abspath(csv_path)
+        with open(csv_path, "r") as f:
+            next(f)  # skip header
+            row_count = sum(1 for _ in f) 
+            f.seek(0); next(f)
+            try:
+                cur.copy_expert(
+                    """COPY raw_transactions_backup (
+                        "TransactionID","UserID","MerchantID","DeviceID","TransactionAmount",
+                        "TransactionDate","PaymentMethod","DeviceType","IP_Address",
+                        "LocationLat","LocationLon","IP_Country","BillingCountry","IsFraud"
+                    ) FROM STDIN WITH CSV""",
+                    f,
+                )
+                cur.execute(
+                    "INSERT INTO pipeline_load_log (file_path, rows_loaded) VALUES (%s, %s)",
+                    (abs_path, row_count),
+                )
+                conn.commit()  # commit per file: a failure on file N doesn't undo 1..N-1
+                print(f"Loaded {csv_path} ({row_count} rows)")
+            except Exception as e:
+                conn.rollback()
+                print(f"Failed on {csv_path}: {e}")
+                raise
+
+    cur.close(); conn.close()
 
 
 # ---------------------------------------------------------------------------
