@@ -54,6 +54,34 @@
     "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-09.csv": {
       "rows_loaded": 22122,
       "loaded_at": "2026-08-10T07:22:29.064792+00:00"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-10.csv": {
+      "rows_loaded": 36590,
+      "loaded_at": "2026-08-17T11:40:47.695524+00:00"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-11.csv": {
+      "rows_loaded": 43793,
+      "loaded_at": "2026-08-17T11:41:37.051011+00:00"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-12.csv": {
+      "rows_loaded": 34235,
+      "loaded_at": "2026-08-17T11:42:19.785290+00:00"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-13.csv": {
+      "rows_loaded": 23086,
+      "loaded_at": "2026-08-17T11:42:46.816318+00:00"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-14.csv": {
+      "rows_loaded": 28622,
+      "loaded_at": "2026-08-17T11:43:26.076611+00:00"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-15.csv": {
+      "rows_loaded": 37331,
+      "loaded_at": "2026-08-17T11:44:16.854136+00:00"
+    },
+    "E:\\Financial Transaction Fraud Detection Platform\\DataGeneration\\raw_data\\transactions_2026-08-16.csv": {
+      "rows_loaded": 31310,
+      "loaded_at": "2026-08-17T11:44:52.744952+00:00"
     }
   }
 }
