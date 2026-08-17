@@ -182,4 +182,4 @@ cython_debug/
 FraudDetect/profiles.yml
 FraudDetect/package-lock.yml
 FraudDetect/packages.yml
-FraudDetect/models/Gold/go_fraud_prediction.py
+airflow_venv
