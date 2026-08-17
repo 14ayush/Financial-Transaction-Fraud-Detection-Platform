@@ -1,0 +1,7 @@
+{
+    "dbt.deferConfigPerProject": {
+        "FraudDetect": {
+            "deferToProduction": false
+        }
+    }
+}

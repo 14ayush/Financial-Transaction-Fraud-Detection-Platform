@@ -1,0 +1,96 @@
+dbt-fusion 2.0.0-preview.205
+   Loading profiles.yml
+   Started resolving packages from packages.yml
+  Finished [  1.89s] resolving packages from packages.yml (1 items)
+
+=================== Errors and Warnings ====================
+[warning] [UnusedConfigKey (dbt1060)]: Ignored unexpected key 'FraudDetect'. Try '+FraudDetect' instead. YAML path: 'models.FraudDetect'.
+  --> dbt_project.yml:33:15
+[warning] [NoNodeForYamlKey (dbt1089)]: Unused schema.yml entry for snapshot 'snap_devices_dimension'
+  --> models/Silver/silver_schema.yml
+[warning] [NoNodeForYamlKey (dbt1089)]: Unused schema.yml entry for snapshot 'snap_users_dimension'
+  --> models/Silver/silver_schema.yml
+[error] [UnusedConfigKey (dbt1060)]: Ignored unexpected key `"unique_id"`. YAML path: `unique_id`.
+  --> models/Gold/go_predictive_model.sql:6:1
+[error] [UnusedConfigKey (dbt1060)]: Ignored unexpected key `"unique_id"`. YAML path: `unique_id`.
+  --> models/Silver/si_transaction_fact.sql:1:1
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["max_value", "min_value"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:135:65
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["values"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:138:39
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["expression"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:90:23
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["min_value"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:78:51
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["min_value"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:83:51
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["min_value"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:69:51
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["max_value", "min_value"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:74:65
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["min_value"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:64:51
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["values"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:111:39
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["values"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:127:39
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["values"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:120:39
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["max_value", "min_value"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:123:65
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["values"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:114:39
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["values"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:117:39
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["min_value"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:108:51
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["expression"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:49:23
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["min_value"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:17:51
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["max_value", "min_value"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:31:65
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["max_value", "min_value"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:35:65
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["min_value"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:27:51
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["min_value"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:21:51
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["min_value"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Gold\gold_schema.yml:40:51
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["field", "to"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Silver\silver_schema.yml:13:67
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["field", "to"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Silver\silver_schema.yml:9:65
+suggestion: Run 'dbt deps' to see the latest fusion compatible packages. For compatibility errors, try the autofix script: https://github.com/dbt-labs/dbt-autofix
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["values"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Bronze\schema.yml:44:23
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["values"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Bronze\schema.yml:55:23
+[error] [DbtYamlValidationError (dbt1159)]: Deprecated test arguments: ["values"] at top-level detected. Please migrate to the new format under the 'arguments' field: https://docs.getdbt.com/reference/deprecations#missingargumentspropertyingenerictestdeprecation.
+  --> models\Bronze\schema.yml:39:23
+[warning] [NoNodeForYamlKey (dbt1089)]: Unused schema.yml entry for model 'go_fraud_detection_dashboard_metrics'
+  --> models/Gold/gold_schema.yml
+[warning] [NoNodeForYamlKey (dbt1089)]: Unused schema.yml entry for model 'si_devices_current'
+  --> models/Silver/silver_schema.yml
+[error] [UnusedConfigKey (dbt1060)]: Ignored unexpected key `"incremental_strategy"`. YAML path: `incremental_strategy`.
+  --> analyses/si_device_dim.sql:1:1
+[error] [UnusedConfigKey (dbt1060)]: Ignored unexpected key `"materialized"`. YAML path: `materialized`.
+  --> analyses/si_device_dim.sql:1:1
+[error] [UnusedConfigKey (dbt1060)]: Ignored unexpected key `"schema"`. YAML path: `schema`.
+  --> analyses/si_device_dim.sql:1:1
+[error] [UnusedConfigKey (dbt1060)]: Ignored unexpected key `"unique_key"`. YAML path: `unique_key`.
+  --> analyses/si_device_dim.sql:1:1
+[error] [UnusedConfigKey (dbt1060)]: Ignored unexpected key `"incremental_strategy"`. YAML path: `incremental_strategy`.
+  --> analyses/si_users_dim.sql:1:1
+[error] [UnusedConfigKey (dbt1060)]: Ignored unexpected key `"materialized"`. YAML path: `materialized`.
+  --> analyses/si_users_dim.sql:1:1
+[error] [UnusedConfigKey (dbt1060)]: Ignored unexpected key `"schema"`. YAML path: `schema`.
+  --> analyses/si_users_dim.sql:1:1
+[error] [UnusedConfigKey (dbt1060)]: Ignored unexpected key `"unique_key"`. YAML path: `unique_key`.
+  --> analyses/si_users_dim.sql:1:1
+[warning] [NodeNotFoundOrDisabled (dbt1087)]: Ref 'si_devices_current' not found in project. Searched for 'FraudDetect.si_devices_current, si_devices_current'
+  --> generic_tests/relationships_si_transaction_f_68ba6bade69fdbba89f234b967b2beee.sql:1:124
+
+==================== Execution Summary =====================
+Finished 'run' with 6 warnings and 37 errors for target 'dev' [4.2s]
