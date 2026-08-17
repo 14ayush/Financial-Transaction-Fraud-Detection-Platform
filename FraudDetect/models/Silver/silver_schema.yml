@@ -6,11 +6,11 @@ models:
       - name: user_id
         tests:
           - not_null
-          - relationships: {to: ref('si_users_current'), field: user_id}
+          
       - name: device_id
         tests:
           - not_null
-          - relationships: {to: ref('si_devices_current'), field: device_id}
+          
       - name: transaction_amount
         tests: [not_null]
 

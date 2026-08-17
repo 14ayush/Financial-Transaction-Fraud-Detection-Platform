@@ -125,3 +125,21 @@ models:
         tests:
           - not_null
           - accepted_values: {values: [true, false]}
+  - name: go_fraud_prediction
+    columns:
+      - name: transaction_id
+        tests: [not_null, unique]
+      - name: fraud_probability
+        tests:
+          - not_null
+          - dbt_utils.accepted_range: {min_value: 0, max_value: 1}
+      - name: risk_tier
+        tests:
+          - accepted_values: {values: ["Low", "Medium", "High"]}
+
+  - name: go_fraud_detection_dashboard_metrics
+    columns:
+      - name: date_key
+        tests: [not_null, unique]
+      - name: total_transactions
+        tests: [not_null]
